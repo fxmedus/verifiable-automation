@@ -137,6 +137,21 @@ Each claim was verified before submission rather than asserted:
 
 ---
 
+## Implementation
+
+These principles are enforced mechanically by
+[**coverage-gate**](https://github.com/fxmedus/coverage-gate), a CLI that wraps
+existing checkers and refuses a pass verdict until coverage is established.
+
+| Clause | Enforcement |
+|---|---|
+| 1 Coverage before correctness | A gap fails the run regardless of individual results, and is enumerated rather than counted |
+| 2 Derive scope from data | Literal-list manifests are rejected at load. Empty resolution is an error, since a denominator of zero always passes |
+| 3 A check that cannot fail | Missing, empty and identical-across-all falsifiers are flagged |
+
+It is validated against the originating defect in both directions: FAIL naming
+`claude_skill` on the unfixed tree, PASS at ten of ten on the fixed one.
+
 ## Licence
 
 Text released under CC BY 4.0. Referenced contributions are governed by the
